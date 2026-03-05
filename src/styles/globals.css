@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Clash Display - Display Font */
+@font-face {
+  font-family: "Clash Display";
+  src: url("/fonts/ClashDisplay-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Clash Display";
+  src: url("/fonts/ClashDisplay-Semibold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Clash Display";
+  src: url("/fonts/ClashDisplay-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* General Sans - Body Font */
+@font-face {
+  font-family: "General Sans";
+  src: url("/fonts/GeneralSans-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "General Sans";
+  src: url("/fonts/GeneralSans-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "General Sans";
+  src: url("/fonts/GeneralSans-Semibold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  body {
+    @apply bg-vara-dark text-white font-body antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  .vara-card {
+    @apply bg-vara-navy rounded-xl border border-white/5 p-6;
+  }
+
+  .vara-btn-primary {
+    @apply bg-vara-blue hover:bg-vara-blue-dark text-white font-body font-medium 
+           px-6 py-3 rounded-lg transition-colors duration-200;
+  }
+
+  .vara-btn-secondary {
+    @apply bg-white/5 hover:bg-white/10 text-white font-body font-medium 
+           px-6 py-3 rounded-lg border border-white/10 transition-colors duration-200;
+  }
+
+  .vara-input {
+    @apply bg-vara-dark border border-white/10 rounded-lg px-4 py-3 text-white 
+           placeholder:text-vara-slate focus:outline-none focus:ring-2 
+           focus:ring-vara-blue/50 focus:border-vara-blue transition-all duration-200;
+  }
+
+  .vara-badge-high {
+    @apply bg-vara-danger/15 text-vara-danger text-xs font-medium px-2.5 py-1 rounded-full;
+  }
+
+  .vara-badge-medium {
+    @apply bg-vara-warning/15 text-vara-warning text-xs font-medium px-2.5 py-1 rounded-full;
+  }
+
+  .vara-badge-low {
+    @apply bg-vara-blue/15 text-vara-blue text-xs font-medium px-2.5 py-1 rounded-full;
+  }
+
+  .vara-badge-info {
+    @apply bg-vara-slate/15 text-vara-slate text-xs font-medium px-2.5 py-1 rounded-full;
+  }
+}
