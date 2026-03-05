@@ -20,7 +20,7 @@ npm run dev
 4. Run `supabase/migrations/001_initial_schema.sql` in Supabase SQL Editor
 5. Enable Email + Magic Link in Supabase Auth settings
 6. Set auth redirect URL: `http://localhost:3000/auth/callback`
-7. Set up Supabase webhook to POST to `/api/auth/webhook` on new user creation
+7. Run `supabase/migrations/002_auth_trigger.sql` to enable automatic firm/user profile creation from `auth.users`
 
 ## Stack
 
