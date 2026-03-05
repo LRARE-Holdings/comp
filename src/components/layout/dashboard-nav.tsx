@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils";
+import { VaraBrand } from "@/components/layout/vara-brand";
 import type { User as AuthUser } from "@supabase/supabase-js";
 
 const NAV_ITEMS = [
@@ -69,17 +70,7 @@ export function DashboardNav({ user }: { user: AuthUser }) {
     <aside className="fixed left-0 top-0 h-screen w-64 bg-vara-navy/50 border-r border-white/5 flex flex-col">
       {/* Logo */}
       <div className="px-6 py-6 border-b border-white/5">
-        <div className="flex items-center gap-3">
-          <div className="w-9 h-9 bg-gradient-to-b from-[#0F1923] to-[#0D1420] rounded-[19%] flex items-center justify-center border border-white/10">
-            <svg width="18" height="14" viewBox="0 0 20 16" fill="none">
-              <path d="M10 0L18 16H14L10 7L6 16H2L10 0Z" fill="white" />
-              <rect x="7" y="14" width="6" height="2" rx="1" fill="#2D7FF9" />
-            </svg>
-          </div>
-          <span className="font-display font-semibold text-lg tracking-[0.09em] text-white">
-            VARA
-          </span>
-        </div>
+        <VaraBrand logoClassName="h-9" textClassName="text-lg" />
       </div>
 
       {/* Navigation */}

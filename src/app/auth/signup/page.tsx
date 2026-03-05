@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import Link from "next/link";
+import { VaraBrand } from "@/components/layout/vara-brand";
 
 const PRACTICE_AREAS = [
   "Conveyancing",
@@ -91,17 +92,7 @@ export default function SignupPage() {
     <div className="min-h-screen bg-vara-dark flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-md">
         {/* Logo */}
-        <div className="flex items-center gap-3 justify-center mb-10">
-          <div className="w-10 h-10 bg-gradient-to-b from-[#0F1923] to-[#0D1420] rounded-[19%] flex items-center justify-center border border-white/10">
-            <svg width="20" height="16" viewBox="0 0 20 16" fill="none">
-              <path d="M10 0L18 16H14L10 7L6 16H2L10 0Z" fill="white" />
-              <rect x="7" y="14" width="6" height="2" rx="1" fill="#2D7FF9" />
-            </svg>
-          </div>
-          <span className="font-display font-semibold text-xl tracking-[0.09em] text-white">
-            VARA
-          </span>
-        </div>
+        <VaraBrand className="justify-center mb-10" priority />
 
         <h1 className="font-display font-bold text-2xl text-white text-center mb-2">
           Start your free trial
