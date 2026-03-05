@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { WaitlistForm } from "@/components/marketing/waitlist-form";
 
 export default function HomePage() {
   return (
@@ -43,19 +44,7 @@ export default function HomePage() {
         </p>
 
         {/* Email capture */}
-        <div className="flex flex-col sm:flex-row gap-3 w-full max-w-md">
-          <input
-            type="email"
-            placeholder="Your work email"
-            className="vara-input flex-1"
-          />
-          <button className="vara-btn-primary whitespace-nowrap">
-            Get early access
-          </button>
-        </div>
-        <p className="text-vara-slate text-sm mt-4">
-          14-day free trial. No credit card required.
-        </p>
+        <WaitlistForm />
 
         {/* Value props */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-20 w-full max-w-3xl">

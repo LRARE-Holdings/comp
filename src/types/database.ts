@@ -249,6 +249,23 @@ export interface Database {
           },
         ];
       };
+      waitlist_leads: {
+        Row: {
+          id: string;
+          email: string;
+          source: string;
+          created_at: string;
+        };
+        Insert: {
+          email: string;
+          source?: string;
+        };
+        Update: {
+          email?: string;
+          source?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: {};
     Functions: {};
@@ -262,3 +279,4 @@ export type User = Database["public"]["Tables"]["users"]["Row"];
 export type RegulatoryUpdate = Database["public"]["Tables"]["regulatory_updates"]["Row"];
 export type Action = Database["public"]["Tables"]["actions"]["Row"];
 export type Policy = Database["public"]["Tables"]["policies"]["Row"];
+export type WaitlistLead = Database["public"]["Tables"]["waitlist_leads"]["Row"];
