@@ -21,6 +21,7 @@ export interface Database {
         };
         Insert: Omit<Database["public"]["Tables"]["firms"]["Row"], "id" | "created_at" | "updated_at">;
         Update: Partial<Database["public"]["Tables"]["firms"]["Insert"]>;
+        Relationships: [];
       };
       users: {
         Row: {
@@ -41,6 +42,15 @@ export interface Database {
         };
         Insert: Omit<Database["public"]["Tables"]["users"]["Row"], "id" | "created_at" | "updated_at">;
         Update: Partial<Database["public"]["Tables"]["users"]["Insert"]>;
+        Relationships: [
+          {
+            foreignKeyName: "users_firm_id_fkey";
+            columns: ["firm_id"];
+            isOneToOne: false;
+            referencedRelation: "firms";
+            referencedColumns: ["id"];
+          },
+        ];
       };
       regulatory_updates: {
         Row: {
@@ -61,6 +71,7 @@ export interface Database {
         };
         Insert: Omit<Database["public"]["Tables"]["regulatory_updates"]["Row"], "id" | "created_at" | "updated_at">;
         Update: Partial<Database["public"]["Tables"]["regulatory_updates"]["Insert"]>;
+        Relationships: [];
       };
       actions: {
         Row: {
@@ -79,6 +90,29 @@ export interface Database {
         };
         Insert: Omit<Database["public"]["Tables"]["actions"]["Row"], "id" | "created_at" | "updated_at">;
         Update: Partial<Database["public"]["Tables"]["actions"]["Insert"]>;
+        Relationships: [
+          {
+            foreignKeyName: "actions_firm_id_fkey";
+            columns: ["firm_id"];
+            isOneToOne: false;
+            referencedRelation: "firms";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "actions_regulatory_update_id_fkey";
+            columns: ["regulatory_update_id"];
+            isOneToOne: false;
+            referencedRelation: "regulatory_updates";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "actions_assigned_to_fkey";
+            columns: ["assigned_to"];
+            isOneToOne: false;
+            referencedRelation: "users";
+            referencedColumns: ["id"];
+          },
+        ];
       };
       policies: {
         Row: {
@@ -94,6 +128,22 @@ export interface Database {
         };
         Insert: Omit<Database["public"]["Tables"]["policies"]["Row"], "id" | "created_at" | "updated_at">;
         Update: Partial<Database["public"]["Tables"]["policies"]["Insert"]>;
+        Relationships: [
+          {
+            foreignKeyName: "policies_firm_id_fkey";
+            columns: ["firm_id"];
+            isOneToOne: false;
+            referencedRelation: "firms";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "policies_uploaded_by_fkey";
+            columns: ["uploaded_by"];
+            isOneToOne: false;
+            referencedRelation: "users";
+            referencedColumns: ["id"];
+          },
+        ];
       };
     };
     Views: {};
