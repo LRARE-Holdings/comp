@@ -4,7 +4,8 @@ import { z } from "zod";
 
 const waitlistSchema = z.object({
   email: z.string().trim().toLowerCase().email(),
-  source: z.string().trim().min(1).max(50).optional(),
+  source: z.string().trim().min(1).max(80).optional(),
+  entryPoint: z.string().trim().min(1).max(80).optional(),
 });
 
 export async function POST(request: Request) {
@@ -17,10 +18,11 @@ export async function POST(request: Request) {
 
   const supabase = await createServerSupabaseClient();
   const { error } = await supabase
-    .from("waitlist_leads")
+    .from("prelaunch_waitlist_emails")
     .insert({
       email: payload.email,
       source: payload.source ?? "landing_page",
+      entry_point: payload.entryPoint ?? "unknown",
     });
 
   if (error && error.code !== "23505") {

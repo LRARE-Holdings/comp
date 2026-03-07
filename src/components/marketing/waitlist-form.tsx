@@ -2,7 +2,23 @@
 
 import { FormEvent, useState } from "react";
 
-export function WaitlistForm() {
+type WaitlistFormProps = {
+  source?: string;
+  entryPoint?: string;
+  buttonLabel?: string;
+  helperText?: string;
+  successMessage?: string;
+  className?: string;
+};
+
+export function WaitlistForm({
+  source = "landing_page",
+  entryPoint = "hero",
+  buttonLabel = "Get early access",
+  helperText = "14-day free trial. No credit card required.",
+  successMessage = "Thanks. You're on the early-access list.",
+  className,
+}: WaitlistFormProps) {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
@@ -27,7 +43,8 @@ export function WaitlistForm() {
         },
         body: JSON.stringify({
           email,
-          source: "landing_page",
+          source,
+          entryPoint,
         }),
       });
 
@@ -36,7 +53,7 @@ export function WaitlistForm() {
       }
 
       setEmail("");
-      setMessage("Thanks. You're on the early-access list.");
+      setMessage(successMessage);
     } catch {
       setIsError(true);
       setMessage("Could not save your request. Please try again.");
@@ -46,7 +63,10 @@ export function WaitlistForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-md">
+    <form
+      onSubmit={handleSubmit}
+      className={["w-full max-w-md", className].filter(Boolean).join(" ")}
+    >
       <div className="flex flex-col sm:flex-row gap-3">
         <input
           type="email"
@@ -63,11 +83,11 @@ export function WaitlistForm() {
           className="vara-btn-primary whitespace-nowrap disabled:opacity-70"
           disabled={isSubmitting}
         >
-          {isSubmitting ? "Submitting..." : "Get early access"}
+          {isSubmitting ? "Submitting..." : buttonLabel}
         </button>
       </div>
       <p className="text-vara-slate text-sm mt-4">
-        14-day free trial. No credit card required.
+        {helperText}
       </p>
       {message ? (
         <p className={`text-sm mt-2 ${isError ? "text-vara-danger" : "text-vara-success"}`}>

@@ -14,8 +14,13 @@ export interface Database {
           subscription_tier: "solo" | "small" | "mid" | "enterprise" | null;
           subscription_status: "trial" | "active" | "cancelled" | "expired";
           trial_ends_at: string | null;
+          billing_email: string | null;
           stripe_customer_id: string | null;
           stripe_subscription_id: string | null;
+          stripe_price_id: string | null;
+          stripe_subscription_status: string | null;
+          subscription_current_period_end: string | null;
+          cancel_at_period_end: boolean;
           created_at: string;
           updated_at: string;
         };
@@ -28,8 +33,13 @@ export interface Database {
           subscription_tier?: "solo" | "small" | "mid" | "enterprise" | null;
           subscription_status?: "trial" | "active" | "cancelled" | "expired";
           trial_ends_at?: string | null;
+          billing_email?: string | null;
           stripe_customer_id?: string | null;
           stripe_subscription_id?: string | null;
+          stripe_price_id?: string | null;
+          stripe_subscription_status?: string | null;
+          subscription_current_period_end?: string | null;
+          cancel_at_period_end?: boolean;
         };
         Update: {
           name?: string;
@@ -40,8 +50,13 @@ export interface Database {
           subscription_tier?: "solo" | "small" | "mid" | "enterprise" | null;
           subscription_status?: "trial" | "active" | "cancelled" | "expired";
           trial_ends_at?: string | null;
+          billing_email?: string | null;
           stripe_customer_id?: string | null;
           stripe_subscription_id?: string | null;
+          stripe_price_id?: string | null;
+          stripe_subscription_status?: string | null;
+          subscription_current_period_end?: string | null;
+          cancel_at_period_end?: boolean;
         };
         Relationships: [];
       };
@@ -249,6 +264,26 @@ export interface Database {
           },
         ];
       };
+      prelaunch_waitlist_emails: {
+        Row: {
+          id: string;
+          email: string;
+          source: string;
+          entry_point: string;
+          created_at: string;
+        };
+        Insert: {
+          email: string;
+          source?: string;
+          entry_point?: string;
+        };
+        Update: {
+          email?: string;
+          source?: string;
+          entry_point?: string;
+        };
+        Relationships: [];
+      };
       waitlist_leads: {
         Row: {
           id: string;
@@ -279,4 +314,6 @@ export type User = Database["public"]["Tables"]["users"]["Row"];
 export type RegulatoryUpdate = Database["public"]["Tables"]["regulatory_updates"]["Row"];
 export type Action = Database["public"]["Tables"]["actions"]["Row"];
 export type Policy = Database["public"]["Tables"]["policies"]["Row"];
+export type PrelaunchWaitlistEmail =
+  Database["public"]["Tables"]["prelaunch_waitlist_emails"]["Row"];
 export type WaitlistLead = Database["public"]["Tables"]["waitlist_leads"]["Row"];
